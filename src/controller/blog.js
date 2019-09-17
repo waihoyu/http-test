@@ -41,8 +41,27 @@ const getDetail = (id )=> {
         author:'zhangsan'
     }
 }
+const newBlog = (blogData = {}) =>{
+    return {
+        id: 3
+    }
+}
+
+const updateBlog = (id, blogData = {}) =>{
+    console.log('update blog')
+    return true;
+}
+
+const delBlog = (id) =>{
+    console.log('del blog')
+    return true;
+}
+
 
 module.exports = {
     getList,
-    getDetail
+    getDetail,
+    newBlog,
+    updateBlog,
+    delBlog
 }

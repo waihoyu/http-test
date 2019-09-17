@@ -5,7 +5,6 @@
  *@version: V1.0.5
 */
 
-
 class BaseModel {
     constructor(data, message){
         if (typeof data === 'string') {
