@@ -59,12 +59,18 @@ const serverHandle = (req, res) => {
         //         return
         // }
         //用户
-        const userData = handleUserRouter(req, res);
-        if (userData) {
-                res.end(JSON.stringify(userData))
-                return
+        // const userData = handleUserRouter(req, res);
+        // if (userData) {
+        //         res.end(JSON.stringify(userData))
+        //         return
+        // }
+        const userResult = handleUserRouter(req, res);
+        if (userResult) {
+            userResult.then(userData => {
+                res.end(JSON.stringify(userData));
+            })
+            return
         }
-
         res.writeHead(404, {"Content-type": "text/plain"})
         res.write("404 Not Found \n")
         res.end()
