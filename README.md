@@ -23,3 +23,19 @@
 | createtime      | bigint(20) |             |  Y       |                  |     0    |
 | author      | bigint(20) |             |  Y       |                  |         |
 ——————————————————————————————————
+
+
+```SQL
+    USE myblog;
+
+    SHOW TABLES 
+    INSERT INTO users (
+        username,
+        `password`,
+        realname
+    )
+    VALUES
+        ('lisan', '123', '李四');
+
+    SELECT * FROM users
+```
