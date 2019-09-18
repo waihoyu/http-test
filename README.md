@@ -10,6 +10,8 @@
 | username | varchar(20) |             |  Y       |                  |         |
 | password | varchar(20) |             |  Y       |                  |         |
 | realname | varchar(20) |             |  Y       |                  |         |
+
+
 ——————————————————————————————————
 
 
