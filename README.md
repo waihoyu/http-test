@@ -6,10 +6,10 @@
 
 | column        | datatype    |  PK主键      | nn不为空 | AI自动增加        | Default |
 | --------      | :-----:     | :----:      | :----:   | :----:           | :----:  |
-| id            |int          |   Y         |  Y       |                  |         |
-| username      | varchar(20) |             |  Y       |                  |         |
-| password      | varchar(20) |             |  Y       |                  |         |
-| realname      | varchar(20) |             |  Y       |                  |         |
+| id|int          |   Y         |  Y       |                  |         |
+| username | varchar(20) |             |  Y       |                  |         |
+| password | varchar(20) |             |  Y       |                  |         |
+| realname | varchar(20) |             |  Y       |                  |         |
 ——————————————————————————————————
 
 
