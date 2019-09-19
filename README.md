@@ -67,13 +67,18 @@
 
 ```
 
-什么是cookie  非常重要
+> 什么是cookie  非常重要
+
+```
 1、存储在浏览器的一段字符串（最大5KB）
 2、跨域不共享
 3、格式如k1=v1;k2=v2;k3=v3;因此可以存储结构化数据;
 4、每次发送http请求，会将请求域的cookie一起发送给server；
 5、server可以修改cookie并返回给浏览器;
 6、浏览器中可以通过JavaScript修改cookie（有限制）
+
+```
+
 
 什么是session  非常重要
 
