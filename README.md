@@ -95,3 +95,18 @@
     但是成本更高
 
 ```
+
+> nginx的配置
+
+```
+		location / {
+            proxy_pass   http://localhost:5051;
+        }
+		location /api/ {
+            proxy_pass   http://localhost:5051;
+			proxy_set_header Host $host;
+        }	
+
+        worker_processes  2;
+
+```

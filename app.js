@@ -5,9 +5,11 @@
  *@version: V1.0.5
 */
 
-const querystring = require('querystring')
-const handleBlogRouter = require('./src/router/blog.js')
-const handleUserRouter = require('./src/router/user.js')
+const querystring = require('querystring');
+const handleBlogRouter = require('./src/router/blog.js');
+const handleUserRouter = require('./src/router/user.js');
+const redis = require('redis');
+const {get,set} = require('./src/db/redis.js');
 
 const getCookieExpires = ()=>{
     const d = new Date();
@@ -15,7 +17,7 @@ const getCookieExpires = ()=>{
     return d.toGMTString();
 }
 
-const SESSION_DATA = {};
+// const SESSION_DATA = {};
 
 const getPostData = (req) => {
     const promise = new Promise((resolve, reject)=>{
@@ -62,22 +64,41 @@ const serverHandle = (req, res) => {
     });
 
     //session处理
+    // let needSetCookie = false;
+    // let userId = req.cookie.userid;
+    // if (userId) {
+    //        //session数据
+    //     if (!SESSION_DATA[userId]) {
+    //         SESSION_DATA[userId] = {};
+    //      }
+    // }else {
+    //     needSetCookie = true;
+    //     userId = `${Date.now()}_${Math.random()}`;
+    //     SESSION_DATA[userId] = {};
+    // }
+    // req.session =  SESSION_DATA[userId];
+
+    //使用redis
     let needSetCookie = false;
     let userId = req.cookie.userid;
-    if (userId) {
-           //session数据
-        if (!SESSION_DATA[userId]) {
-            SESSION_DATA[userId] = {};
-         }
-    }else {
-        needSetCookie = true;
-        userId = `${Date.now()}_${Math.random()}`;
-        SESSION_DATA[userId] = {};
+    if (!userId) {
+            needSetCookie = true;
+            userId = `${Date.now()}_${Math.random()}`;
+            set(userId,{});   
     }
-    req.session =  SESSION_DATA[userId];
-
-    //处理 post data;
-    getPostData(req).then( postData =>{
+    //获取session；
+    req.sessionId = userId;
+    get(req.sessionId).then(sessionData => {
+        if (sessionData == null) {
+            set(req.sessionId,{});
+            req.session = {}; 
+        }else{
+            req.session = sessionData;
+        }
+        // console.log('req.session',req.session);
+        // return getPostData(req)
+        return getPostData(req)
+    }).then( postData =>{
         req.body = postData;
         //博客
         const blogResult = handleBlogRouter(req, res);
@@ -122,7 +143,6 @@ const serverHandle = (req, res) => {
 }
 
 module.exports = serverHandle
-
 
 //-------------------------------------------------------
 // const http = require('http')

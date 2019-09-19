@@ -8,9 +8,11 @@ redisClient.on('error', err => {
 })
 
 function set(key, val) {
+    
     if (typeof val === 'object') {
-        val = JSON.stringify(val);
+        val = JSON.stringify(val);      
     }
+    console.log('***##'+key,val)
     redisClient.set(key,val,redis.print);
 }
 

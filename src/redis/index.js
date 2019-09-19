@@ -12,7 +12,7 @@ redisClient.on('error',(err)=>{
 });
 
 redisClient.set('myname','zhangsan2',redis.print);
-redisClient.get('myname', (err, val)=> {
+redisClient.get('lisan', (err, val)=> {
     if (err) {
         console.error(err);
         return;
