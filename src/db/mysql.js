@@ -7,12 +7,9 @@
 
 const mysql = require('mysql')
 const {MYSQL_CONF} = require('../conf/db')
-// const mysql = require('mysql')
 
 const con = mysql.createConnection(MYSQL_CONF);
-
 con.connect()
-
 function exec(sql){
     const promise = new Promise((resolve, reject)=>{
         con.query(sql, (err, result)=>{
@@ -25,11 +22,9 @@ function exec(sql){
     })
     return  promise;
 }
-
 module.exports = {
     exec
 }
-
 
 // const sql = 'select * from users';
 // con.query(sql, (err, result)=>{
@@ -39,5 +34,4 @@ module.exports = {
 //     }
 //     console.log(result)
 // })
-
 // con.end()
