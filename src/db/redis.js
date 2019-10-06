@@ -1,3 +1,12 @@
+/*
+ *@description:
+ *@author: Wai HoYu
+ *@date: 2019-10-06 23:59:54
+ *@version: V1.0.5
+*/
+
+
+
 const redis =require('redis');
 const {REDIS_CONF} = require('../conf/db');
 

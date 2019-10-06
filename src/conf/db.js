@@ -1,5 +1,5 @@
 /*
- *@description: 环境参数配置
+ *@description: 环境参数配置  数据库
  *@author: Wai HoYu
  *@date: 2019-09-18 13:01:09
  *@version: V1.0.5
